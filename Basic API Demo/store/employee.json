@@ -1,0 +1,17 @@
+[
+    {
+        "id": 1001,
+        "name": "Jon Snow",
+        "email": "jonsnow@castleblack.org"
+    },
+    {
+        "id": 1002,
+        "name": "Sam Tarly",
+        "email": "sam@castleblack.org"
+    },
+    {
+        "id": 1003,
+        "name": "Jorah Mormont",
+        "email": "jorah.friend@dragons.inc"
+    }
+]
