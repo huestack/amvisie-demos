@@ -8,5 +8,7 @@ interface EmployeeRepositoryInterface
     
     function fetchAll() : array;
     
-    function save(\Demo\EmployeeModel $employee) : int;
+    function add(\Demo\EmployeeModel $employee) : int;
+    
+    function update(int $id, \Demo\EmployeeModel $model) : bool;
 }

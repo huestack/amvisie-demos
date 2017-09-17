@@ -23,15 +23,18 @@ class EmployeeController extends \Amvisie\Core\BaseApiController
     }
 
     /**
-     * 
-     * @param int $id
-     * @return Repositories\EmployeeRepository
-     */ 
+     * GET /api/employee/@id
+     * @return EmployeeViewModel
+     */
     public function get(int $id)
     {
         return $this->service->getOne($id) ?? $this->notFound();
     }
     
+    /**
+     * POST /api/employee
+     * @return EmployeeViewModel On success.
+     */
     public function post(EmployeeModel $employee)
     {
         if ($employee->isValid()) {
@@ -41,11 +44,15 @@ class EmployeeController extends \Amvisie\Core\BaseApiController
         }
     }
     
+    /**
+     * PUT /api/employee/@id
+     * @return \Amvisie\Core\ResponseInterface.
+     */
     public function put(int $id, EmployeeModel $employee)
     {
         if ($employee->isValid()) {
-            $this->service->update($id, $employee);
-            return $this->ok();
+            return $this->service->update($id, $employee)
+                    ? $this->ok() : $this->notFound();
         } else {
             return $this->forbidden($employee->getErrors());
         }
@@ -53,6 +60,6 @@ class EmployeeController extends \Amvisie\Core\BaseApiController
     
     public function delete(array $id)
     {
-        var_dump($id);
+        
     }
 }

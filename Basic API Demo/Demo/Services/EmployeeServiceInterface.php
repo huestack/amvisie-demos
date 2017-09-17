@@ -12,5 +12,5 @@ interface EmployeeServiceInterface
     
     function save(\Demo\EmployeeModel $employee) : \Demo\EmployeeViewModel;
     
-    function update(int $id, \Demo\EmployeeModel $employee);
+    function update(int $id, \Demo\EmployeeModel $employee) : bool;
 }

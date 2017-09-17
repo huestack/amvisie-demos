@@ -53,12 +53,12 @@ class EmployeeService implements EmployeeServiceInterface
 
     public function save(\Demo\EmployeeModel $employee): \Demo\EmployeeViewModel
     {
-        $id = $this->repository->save($employee);
+        $id = $this->repository->add($employee);
         return new \Demo\EmployeeViewModel($id, $employee->name, $employee->email);
     }
 
-    public function update(int $id, \Demo\EmployeeModel $employee)
+    public function update(int $id, \Demo\EmployeeModel $employee) : bool
     {
-        
+        return $this->repository->update($id, $employee);
     }
 }
