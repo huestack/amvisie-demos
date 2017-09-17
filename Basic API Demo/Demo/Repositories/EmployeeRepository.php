@@ -92,4 +92,16 @@ class EmployeeRepository implements EmployeeRepositoryInterface
         
         return -1;
     }
+
+    public function delete(int $id): bool {
+        $index = $this->getItemIndex($id);
+        if ($index === -1) {
+            return false;
+        }
+        
+        unset($this->list[$index]);
+        $this->save();
+        
+        return true;
+    }
 }

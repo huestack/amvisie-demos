@@ -1,1 +1,17 @@
-[{"id":1001,"name":"Jon Snow","email":"jonsnow@nightwatch.org"},{"id":1002,"name":"Jorah Mormont","email":"serjorah@threedragons.inc"},{"id":1003,"name":"Sam Tarly","email":"sam@nightwatch.org"}]
+[
+	{
+		"id":1001,
+		"name":"Jon Snow",
+		"email":"jonsnow@nightwatch.org"
+	},
+	{
+		"id":1002,
+		"name":"Jorah Mormont",
+		"email":"serjorah@threedragons.inc"
+	},
+	{
+		"id":1003,
+		"name":"Brienne of Tarth",
+		"email":"oathkeeper@housetarth.com"
+	}
+]

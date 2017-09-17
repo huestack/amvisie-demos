@@ -8,7 +8,7 @@ interface EmployeeServiceInterface
     
     function getAll() : array;
     
-    function deleteOne(int $id) : void;
+    function deleteOne(int $id) : bool;
     
     function save(\Demo\EmployeeModel $employee) : \Demo\EmployeeViewModel;
     

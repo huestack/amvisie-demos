@@ -17,9 +17,9 @@ class EmployeeService implements EmployeeServiceInterface
         $this->repository = $repository;
     }
 
-    public function deleteOne(int $id): void
+    public function deleteOne(int $id): bool
     {
-        
+        return $this->repository->delete($id);
     }
 
     public function getAll(): array

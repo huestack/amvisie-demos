@@ -58,8 +58,9 @@ class EmployeeController extends \Amvisie\Core\BaseApiController
         }
     }
     
-    public function delete(array $id)
+    public function delete(int $id)
     {
-        
+        return $this->service->deleteOne($id)
+                    ? $this->ok() : $this->notFound();
     }
 }
