@@ -4,9 +4,9 @@ namespace Demo\Repositories;
 
 interface EmployeeRepositoryInterface
 {
-    function fetchOne(int $id) : \Demo\Employee;
+    function fetchOne(int $id) : ?array;
     
     function fetchAll() : array;
     
-    function save(Employee $employee) : int;
+    function save(\Demo\EmployeeModel $employee) : int;
 }

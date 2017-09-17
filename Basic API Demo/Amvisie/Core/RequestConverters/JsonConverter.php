@@ -15,7 +15,11 @@ class JsonConverter extends BaseConverter
     public function parse() : bool
     {
         $content = ltrim(file_get_contents('php://input'));
-       
+        
+        if (strlen($content) === 0) {
+           return true; 
+        }
+        
         $this->isArray = $content[0] === '[';
         
         $this->data = json_decode($content, true);
@@ -24,7 +28,7 @@ class JsonConverter extends BaseConverter
     }
     
     /**
-     * 
+
      * @param \ReflectionClass $object
      */
     public function convertAs(\ReflectionClass $object)

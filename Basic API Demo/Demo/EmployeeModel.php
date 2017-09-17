@@ -5,7 +5,7 @@ namespace Demo;
 use Amvisie\Core\Annotations\RequiredRule;
 use Amvisie\Core\Annotations;
 
-class Employee extends \Amvisie\Core\BaseModel
+class EmployeeModel extends \Amvisie\Core\BaseModel
 {
     public $name, $email;
     

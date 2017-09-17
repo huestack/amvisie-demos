@@ -5,42 +5,46 @@ namespace Demo\Repositories;
 class EmployeeRepository implements EmployeeRepositoryInterface
 {
     private $list = array();
+    private $fileName;
     
     public function __construct(string $fileName)
     {
-        //$file = fopen($fileName, 'r');
+        $this->fileName = $fileName;
         $content = file_get_contents($fileName);
-        $array = json_decode($content, true);
-        
-        foreach ($array as $item) {
-            $employee = new \Demo\Employee();
-            $employee->id = $item['id'];
-            $employee->name = $item['name'];
-            $employee->email = $item['email'];
-            
-            $this->list[] = $employee;
-        }
+        $this->list = json_decode($content, true);
     }  
     
     public function fetchAll(): array {
         return $this->list;
     }
 
-    public function fetchOne(int $id): \Demo\Employee
+    public function fetchOne(int $id): ?array
     {
         $items = array_filter(
             $this->list, 
-            function (\Demo\Employee $item) use ($id)
+            function (array $item) use ($id)
             {
-                return $item->id == $id;
+                return $item['id'] == $id;
             }
         );
-
-        return count($items) == 0 ? null : $items[0];
+        
+        return count($items) == 0 ? null : array_pop($items);
     }
 
-    public function save(Employee $employee): int
+    public function save(\Demo\EmployeeModel $employee): int
     {
+        $newEmployee = array();
         
+        $lastEmployee = $this->list[count($this->list) - 1];
+        
+        $newEmployee['id'] = $lastEmployee['id'] + 1;
+        $newEmployee['name'] = $employee->name;
+        $newEmployee['email'] = $employee->email;
+        
+        $this->list[] = $employee;
+        
+        file_put_contents($this->fileName, json_encode($this->list));
+        
+        return $employee['id'];
     }
 }

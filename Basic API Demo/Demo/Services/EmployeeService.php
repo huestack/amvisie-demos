@@ -24,17 +24,41 @@ class EmployeeService implements EmployeeServiceInterface
 
     public function getAll(): array
     {
-        return $this->repository->fetchAll();
+        $items = array();;
+        foreach ($this->repository->fetchAll() as $item) {
+            $items[] = new \Demo\EmployeeViewModel(
+                        $item['id'],
+                        $item['name'],
+                        $item['email']
+                    );
+        }
+        
+        return $items;
     }
 
-    public function getOne(int $id): \Demo\Employee
+    public function getOne(int $id): ?\Demo\EmployeeViewModel
     {
-        return $this->repository->fetchOne($id);
+        $item = $this->repository->fetchOne($id);
+        
+        if ($item == null) {
+           return null; 
+        }
+        
+        return new \Demo\EmployeeViewModel(
+                        $item['id'],
+                        $item['name'],
+                        $item['email']
+                    );
     }
 
-    public function save(\Demo\Employee $employee): int
+    public function save(\Demo\EmployeeModel $employee): \Demo\EmployeeViewModel
+    {
+        $id = $this->repository->save($employee);
+        return new \Demo\EmployeeViewModel($id, $employee->name, $employee->email);
+    }
+
+    public function update(int $id, \Demo\EmployeeModel $employee)
     {
         
     }
-
 }
