@@ -72,6 +72,7 @@ class MyApplication extends \Amvisie\Core\Application
     
     private function registerControllerFactory()
     {
+        // Register a controller factory that resolves controller class. Use this for dependency injection.
         \Amvisie\Core\ControllerBuilder::current()->setControllerFactory(new \Demo\MyControllerFactory($this->injector));
     }
     

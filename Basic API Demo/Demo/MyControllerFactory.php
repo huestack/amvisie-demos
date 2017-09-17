@@ -4,7 +4,6 @@ namespace Demo;
 
 /**
  * Registers a factory that resolves the controller.
- *
  * @author Ritesh Gite.
  */
 class MyControllerFactory implements \Amvisie\Core\ControllerFactoryInterface
@@ -22,6 +21,7 @@ class MyControllerFactory implements \Amvisie\Core\ControllerFactoryInterface
 
     public function createController(string $controllerName): \Amvisie\Core\ControllerInterface
     {
+        // Uses DI container to resolve controller name.
         return $this->injector->make($controllerName);
     }
 }

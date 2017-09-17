@@ -8,6 +8,9 @@ class EmployeeController extends \Amvisie\Core\BaseApiController
 {
     private $service;
     
+    /**
+     * @param EmployeeServiceInterface $service An instance of service injected by Auryn\Injector class.
+     */
     public function __construct(EmployeeServiceInterface $service)
     {
         $this->service = $service;
@@ -46,7 +49,7 @@ class EmployeeController extends \Amvisie\Core\BaseApiController
     
     /**
      * PUT /api/employee/@id
-     * @return \Amvisie\Core\ResponseInterface.
+     * @return \Amvisie\Core\Api\BaseApiResponse.
      */
     public function put(int $id, EmployeeModel $employee)
     {
@@ -57,7 +60,13 @@ class EmployeeController extends \Amvisie\Core\BaseApiController
             return $this->forbidden($employee->getErrors());
         }
     }
-    
+
+    /**
+     * DELETE /api/employee/@id
+     * Use DELETE /api/employee?id[]=1&id[]=2 for multiple items removal, and use 
+     * delete(array id) as method.
+     * @return \Amvisie\Core\Api\BaseApiResponse.
+     */
     public function delete(int $id)
     {
         return $this->service->deleteOne($id)
